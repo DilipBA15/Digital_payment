@@ -18,8 +18,8 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
-        source: "homepage.html"
-        target: "/home/ubuntu/"
+        source: "index.html"
+        target: "/home/ubuntu/static_website"
 
     - name: Move file to NGINX directory
       uses: appleboy/ssh-action@master
@@ -28,5 +28,5 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          sudo mv /home/ubuntu/homepage.html /var/www/html/index.html
+          sudo mv /home/ubuntu/index.html /var/www/html/index.html
           sudo systemctl restart nginx
